@@ -39,7 +39,7 @@ function Question(props) {
             ${answered && opt === correct ? 'text-white font-semibold' : 'bg-opacity-15'}
             ${answered && opt === answer ? 'ring-1 ring-offset-1 ring-purple-dark' : ''}`}
           disabled={answered}>
-          {opt}
+          {decode(opt)}
         </button>
       </div>
     )
