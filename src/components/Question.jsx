@@ -3,38 +3,44 @@ import { decode } from 'html-entities'
 import { nanoid } from 'nanoid'
 
 function Question(props) {
-  const { question, incorrect, correct, isFinished, checkAnswer } = props
-  const [answer, setAnswer] = useState()
+  const { question, incorrect, correct } = props
+  const [answered, setAnswered] = useState(false)
+  const [answer, setAnswer] = useState('')
 
-  useEffect(() => {
-    checkAnswer(answer, correct)
-  }, [isFinished])
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
 
-  function handleChange(event) {
-    const { value } = event.target
-    setAnswer(value)
+    while (currentIndex != 0) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
   }
-  console.log(`answer:: ${answer}`)
 
-  const name = nanoid()
-  const answers = [...incorrect, correct]
+  const [answers, setAnswers] = useState(shuffle([...incorrect, correct]))
+
+  function check(opt) {
+    setAnswer(opt)
+    setAnswered(true)
+  }
+
   const options = answers.map(opt => {
     const id = nanoid()
     return (
       <div key={id}>
-        <input
-          type="radio"
-          name={name}
-          id={id}
-          onChange={handleChange}
-          value={opt}
-          checked={answer === opt}
-          className='hidden peer' />
-        <label
-          htmlFor={id}
-          className={`${opt === correct && isFinished ? 'bg-opacity-80 text-white' : 'bg-opacity-15'} bg-purple-light flex pl-3 py-2 rounded text-purple-dark w-[100%] peer-checked:ring-1 peer-checked:ring-purple-dark peer-checked:ring-offset-1`}>
-          {decode(opt)}
-        </label>
+        <button
+          onClick={() => check(opt)}
+          className={`bg-purple-light w-[100%] text-left py-2 px-3 rounded-sm 
+            ${answered && opt === correct ? 'text-white font-semibold' : 'bg-opacity-15'}
+            ${answered && opt === answer ? 'ring-1 ring-offset-1 ring-purple-dark' : ''}`}
+          disabled={answered}>
+          {opt}
+        </button>
       </div>
     )
   })
