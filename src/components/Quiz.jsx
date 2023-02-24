@@ -16,7 +16,7 @@ function Quiz() {
   })
 
   return (
-    <section className='mt-24 md:px-96'>
+    <section className='mt-24'>
       {questions}
     </section>
   )
