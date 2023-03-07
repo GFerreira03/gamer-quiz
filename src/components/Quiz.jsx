@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import fetchQuestionsData from '../hooks/fetchQuestionsData.js'
 import Question from './Question.jsx'
 import { nanoid } from 'nanoid'
@@ -16,7 +16,7 @@ function Quiz() {
   })
 
   return (
-    <section className='mt-24'>
+    <section className='mt-24 md:max-w-4xl m-auto'>
       {questions}
     </section>
   )
