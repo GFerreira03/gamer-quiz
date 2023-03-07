@@ -1,15 +1,18 @@
 import React from 'react'
-import Header from './components/Header'
-
-//Components
-import Quiz from './components/Quiz'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import GamesQuiz from './pages/GamesQuiz'
+import Home from './pages/Home'
 
 function App() {
 
   return (
     <>
-      <Header />
-      <Quiz />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/quiz' element={<GamesQuiz />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
