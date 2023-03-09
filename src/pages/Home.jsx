@@ -15,6 +15,7 @@ function Home() {
         </h1>
         <button onClick={startPlay} className='text-purple-light text-3xl px-5 py-2 hover:text-white hover:bg-purple-light transition-all' >Play</button>
       </div>
+      <h3 className='fixed bottom-4 text-center left-0 right-0'>Powered by <a href="https://opentdb.com/" target={'_blank'} className='underline hover:text-purple-light'>OpenTDB</a></h3>
     </>
   )
 }
