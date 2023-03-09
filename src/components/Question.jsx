@@ -3,7 +3,7 @@ import { decode } from 'html-entities'
 import { nanoid } from 'nanoid'
 
 function Question(props) {
-  const { question, incorrect, correct } = props
+  const { question, questionNumber, incorrect, correct } = props
   const [answered, setAnswered] = useState(false)
   const [answer, setAnswer] = useState('')
 
@@ -46,7 +46,7 @@ function Question(props) {
   })
   return (
     <div className='grid gap-3 px-6'>
-      <h3>{decode(question)}</h3>
+      <h3><span className='text-purple-light font-bold text-3xl opacity-70'>0{questionNumber}. </span>{decode(question)}</h3>
       <div className='grid gap-2 mb-6'>
         {options}
       </div>
